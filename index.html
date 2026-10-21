@@ -1,0 +1,188 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyFlow — Seu espaço de estudos</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+    <div class="app-layout">
+
+        <aside class="sidebar">
+            <a href="#inicio" class="logo">Study<span>Flow</span></a>
+
+            <p class="menu-label">MENU PRINCIPAL</p>
+
+            <nav class="menu">
+                <button class="menu-item ativo" type="button" data-destino="inicio">
+                    ▦ &nbsp; Início
+                </button>
+
+                <button class="menu-item" type="button" data-destino="materias">
+                    ▤ &nbsp; Minhas matérias
+                </button>
+
+                <button class="menu-item" type="button" data-destino="notas">
+                    ▧ &nbsp; Minhas notas
+                </button>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <p>Seu espaço para aprender.</p>
+                <span>StudyFlow Beta 0.2 · 2026</span>
+            </div>
+        </aside>
+
+        <main class="conteudo" id="inicio">
+
+            <header class="topbar">
+                <div>
+                    <p class="subtitulo">SEU ESPAÇO DE ESTUDOS</p>
+                    <h1>Bem-vindo ao StudyFlow!</h1>
+                </div>
+
+                <div class="perfil">SF</div>
+            </header>
+
+            <section class="boas-vindas">
+                <div>
+                    <p class="etiqueta">ORGANIZE. ESTUDE. EVOLUA.</p>
+                    <h2>Seus estudos, tudo no StudyFlow!</h2>
+                    <p>Organize suas matérias e acompanhe suas notas.</p>
+                </div>
+
+                <div class="ilustracao">
+                    <img
+                        src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=500&q=85"
+                        alt="Livros para estudar"
+                    >
+                </div>
+            </section>
+
+            <section class="resumo">
+
+                <button class="resumo-card" type="button" data-destino="materias">
+                    <div class="icone azul">▤</div>
+                    <p>Organização</p>
+                    <h3>Minhas matérias</h3>
+                    <span>Gerencie suas disciplinas</span>
+                    <strong id="totalMaterias">0 matérias</strong>
+                </button>
+
+                <button class="resumo-card" type="button" data-destino="notas">
+                    <div class="icone verde">✓</div>
+                    <p>Acompanhamento</p>
+                    <h3>Minhas notas</h3>
+                    <span>Registre seu desempenho</span>
+                    <strong id="totalNotas">Nenhuma nota</strong>
+                </button>
+
+            </section>
+
+            <section class="painel" id="secaoMaterias">
+
+                <div class="titulo-secao">
+                    <div>
+                        <h2>Minhas matérias</h2>
+                        <p>Adicione e organize suas disciplinas.</p>
+                    </div>
+
+                    <span class="mini-icone">📖</span>
+                </div>
+
+                <form class="adicionar" id="formMateria">
+                    <input
+                        id="nomeMateria"
+                        type="text"
+                        placeholder="Ex: Biologia:P"
+                        maxlength="60"
+                        autocomplete="off"
+                        aria-label="Nome da matéria"
+                    >
+
+                    <button id="botaoAdicionar" type="submit">
+                        + Adicionar matéria
+                    </button>
+                </form>
+
+                <p class="legenda-lista">Suas disciplinas</p>
+
+                <ul id="listaMaterias"></ul>
+
+                <p id="estadoMaterias">
+                    Você ainda não adicionou matérias.
+                </p>
+
+                <div class="acoes">
+                    <button id="botaoExcluir" type="button">
+                        Excluir matéria selecionada
+                    </button>
+
+                    <button id="botaoNotas" type="button" data-destino="notas">
+                        Ver notas →
+                    </button>
+                </div>
+
+            </section>
+
+            <section class="painel" id="areaNotas">
+
+                <div class="titulo-secao">
+                    <div>
+                        <h2>Minhas notas</h2>
+                        <p>Registre notas de 0 a 10.</p>
+                    </div>
+
+                    <span class="mini-icone">📊</span>
+                </div>
+
+                <p id="resumoNotas">
+                    Você ainda não registrou nenhuma nota.
+                </p>
+
+                <form id="formNota" class="form-nota">
+                    <select id="nomeNota" aria-label="Matéria da nota" required>
+                        <option value="">Selecione uma matéria</option>
+                    </select>
+
+                    <input
+                        id="valorNota"
+                        type="number"
+                        min="0"
+                        max="10"
+                        step="0.1"
+                        placeholder="Nota de 0 a 10"
+                        aria-label="Valor da nota"
+                        required
+                    >
+
+                    <button id="botaoSalvarNota" type="submit">
+                        Salvar nota
+                    </button>
+                </form>
+
+                <p class="legenda-lista">Notas registradas</p>
+
+                <ul id="listaNotas"></ul>
+
+                <p id="estadoNotas">
+                    Suas notas aparecerão aqui:P
+                </p>
+
+            </section>
+
+            <p id="mensagem" aria-live="polite"></p>
+
+            <footer>
+                Feito para facilitar sua jornada no Alberto;D
+            </footer>
+
+        </main>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+ .,.

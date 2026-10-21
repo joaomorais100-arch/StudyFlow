@@ -1,0 +1,849 @@
+/* ========================================
+   STUDYFLOW BETA 0.2
+   Visual moderno inspirado nas ilustrações
+======================================== */
+
+:root {
+    --azul: #6c8cff;
+    --azul-claro: #91aaff;
+    --azul-escuro: #4168e8;
+    --fundo: #0b1120;
+    --fundo-card: #111b2e;
+    --fundo-card-hover: #17243b;
+    --texto: #edf2ff;
+    --texto-suave: #9ba9c4;
+    --borda: #263650;
+    --verde: #57d6a0;
+    --vermelho: #ff7887;
+    --raio: 18px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 24px;
+}
+
+body {
+    min-height: 100vh;
+    background:
+        radial-gradient(ellipse at 75% 0%, rgba(65, 104, 232, 0.10), transparent 40%),
+        var(--fundo);
+    color: var(--texto);
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+button,
+input,
+select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+a:focus-visible {
+    outline: 2px solid var(--azul-claro);
+    outline-offset: 3px;
+}
+
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* ===== ESTRUTURA PRINCIPAL ===== */
+
+.app-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ===== BARRA LATERAL ===== */
+
+.sidebar {
+    width: 245px;
+    min-width: 245px;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 18px 22px;
+    background: #0d1628;
+    border-right: 1px solid var(--borda);
+}
+
+.logo {
+    display: inline-block;
+    align-self: flex-start;
+    margin: 0 0 44px 10px;
+    font-size: 27px;
+    font-weight: 800;
+    letter-spacing: -1.2px;
+}
+
+.logo span {
+    color: var(--azul);
+}
+
+.menu-label {
+    margin: 0 0 12px 12px;
+    color: #71819f;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.7px;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.menu-item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 13px 14px;
+    color: var(--texto-suave);
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    text-align: left;
+    font-size: 13px;
+    font-weight: 600;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.menu-item:hover {
+    color: var(--texto);
+    background: #17243b;
+}
+
+.menu-item.ativo {
+    color: #ffffff;
+    background: linear-gradient(110deg, #426be9, #547cf2);
+    border-color: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 6px 20px rgba(65, 104, 232, 0.18);
+}
+
+.sidebar-bottom {
+    margin-top: auto;
+    padding: 18px 10px 0;
+    border-top: 1px solid var(--borda);
+}
+
+.sidebar-bottom p {
+    margin-bottom: 5px;
+    color: #c4d0e8;
+    font-size: 12px;
+}
+
+.sidebar-bottom span {
+    color: #71819f;
+    font-size: 10px;
+}
+
+/* ===== CONTEÚDO ===== */
+
+.conteudo {
+    width: min(100%, 1250px);
+    min-width: 0;
+    margin: 0 auto;
+    padding: 34px 42px 25px;
+}
+
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    margin-bottom: 28px;
+}
+
+.subtitulo {
+    margin-bottom: 5px;
+    color: var(--azul-claro);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.topbar h1 {
+    font-size: clamp(22px, 3vw, 29px);
+    line-height: 1.3;
+    letter-spacing: -0.8px;
+}
+
+.perfil {
+    width: 43px;
+    height: 43px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    color: white;
+    background: linear-gradient(145deg, #7795ff, #4268dc);
+    border: 3px solid #202e49;
+    border-radius: 15px;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+/* ===== BANNER DE BOAS-VINDAS ===== */
+
+.boas-vindas {
+    min-height: 220px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    overflow: hidden;
+    padding: 30px 34px;
+    background:
+        radial-gradient(circle at 88% 20%, rgba(126, 157, 255, 0.23), transparent 32%),
+        linear-gradient(115deg, #182d54, #233f78 65%, #293d70);
+    border: 1px solid #344e82;
+    border-radius: 22px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+}
+
+.boas-vindas > div:first-child {
+    position: relative;
+    z-index: 1;
+    max-width: 440px;
+}
+
+.etiqueta {
+    display: inline-block;
+    margin-bottom: 13px;
+    padding: 5px 10px;
+    color: #c9d7ff;
+    background: rgba(139, 165, 255, 0.13);
+    border: 1px solid rgba(174, 193, 255, 0.22);
+    border-radius: 7px;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.boas-vindas h2 {
+    max-width: 390px;
+    margin-bottom: 11px;
+    color: #ffffff;
+    font-size: clamp(23px, 3vw, 33px);
+    line-height: 1.25;
+    letter-spacing: -1px;
+}
+
+.boas-vindas p:last-child {
+    max-width: 330px;
+    color: #c1d0ef;
+    font-size: 13px;
+}
+
+.ilustracao {
+    width: 215px;
+    height: 160px;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+    background: #314c7d;
+    border: 4px solid rgba(255, 255, 255, 0.13);
+    border-radius: 20px;
+    box-shadow: 0 12px 28px rgba(5, 12, 29, 0.25);
+    transform: rotate(2deg);
+}
+
+.ilustracao::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(145deg, transparent 45%, rgba(11, 17, 32, 0.28));
+    pointer-events: none;
+}
+
+.ilustracao img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ===== CARDS DE RESUMO ===== */
+
+.resumo {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    margin: 25px 0;
+}
+
+.resumo-card {
+    min-width: 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 21px;
+    overflow: hidden;
+    color: var(--texto);
+    background: var(--fundo-card);
+    border: 1px solid var(--borda);
+    border-radius: var(--raio);
+    text-align: left;
+    transition: transform 0.2s, background 0.2s, border-color 0.2s;
+}
+
+.resumo-card:hover {
+    transform: translateY(-3px);
+    background: var(--fundo-card-hover);
+    border-color: #4867a5;
+}
+
+.icone {
+    width: 43px;
+    height: 43px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 15px;
+    border-radius: 13px;
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.icone.azul {
+    color: #9db5ff;
+    background: rgba(83, 119, 245, 0.16);
+    border: 1px solid rgba(108, 140, 255, 0.15);
+}
+
+.icone.verde {
+    color: var(--verde);
+    background: rgba(87, 214, 160, 0.12);
+    border: 1px solid rgba(87, 214, 160, 0.14);
+}
+
+.resumo-card p {
+    margin-bottom: 3px;
+    color: var(--texto-suave);
+    font-size: 11px;
+}
+
+.resumo-card h3 {
+    margin-bottom: 3px;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.resumo-card span {
+    color: var(--texto-suave);
+    font-size: 12px;
+}
+
+.resumo-card strong {
+    margin-top: 17px;
+    color: var(--azul-claro);
+    font-size: 12px;
+}
+
+/* ===== PAINÉIS ===== */
+
+.painel {
+    margin-bottom: 22px;
+    padding: 25px;
+    background: rgba(17, 27, 46, 0.88);
+    border: 1px solid var(--borda);
+    border-radius: var(--raio);
+    scroll-margin-top: 25px;
+}
+
+.titulo-secao {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 22px;
+}
+
+.titulo-secao h2 {
+    margin-bottom: 4px;
+    font-size: 19px;
+    letter-spacing: -0.4px;
+}
+
+.titulo-secao p {
+    color: var(--texto-suave);
+    font-size: 12px;
+}
+
+.mini-icone {
+    width: 43px;
+    height: 43px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    background: #1b2b47;
+    border: 1px solid #304465;
+    border-radius: 13px;
+    font-size: 19px;
+}
+
+/* ===== CAMPOS E FORMULÁRIOS ===== */
+
+.adicionar,
+.form-nota {
+    display: flex;
+    align-items: stretch;
+    gap: 10px;
+}
+
+input,
+select {
+    width: 100%;
+    min-width: 0;
+    padding: 12px 14px;
+    color: var(--texto);
+    background: #0c1526;
+    border: 1px solid #2b3b58;
+    border-radius: 10px;
+    font-size: 13px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input::placeholder {
+    color: #7585a2;
+}
+
+input:focus,
+select:focus {
+    border-color: var(--azul);
+    box-shadow: 0 0 0 3px rgba(108, 140, 255, 0.10);
+    outline: none;
+}
+
+select {
+    color-scheme: dark;
+}
+
+.adicionar input {
+    flex: 1;
+}
+
+#botaoAdicionar,
+#botaoSalvarNota {
+    flex-shrink: 0;
+    padding: 12px 17px;
+    color: white;
+    background: linear-gradient(110deg, #5279f1, #4266d7);
+    border: 1px solid rgba(166, 186, 255, 0.2);
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    transition: filter 0.2s, transform 0.2s;
+}
+
+#botaoAdicionar:hover,
+#botaoSalvarNota:hover {
+    filter: brightness(1.12);
+    transform: translateY(-1px);
+}
+
+.legenda-lista {
+    margin: 23px 0 10px;
+    color: #aab8d2;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+/* ===== LISTAS ===== */
+
+#listaMaterias,
+#listaNotas {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    list-style: none;
+}
+
+#listaMaterias li,
+#listaNotas li {
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 13px 14px;
+    color: #dce5fa;
+    background: #0e182a;
+    border: 1px solid #263752;
+    border-radius: 11px;
+    overflow-wrap: anywhere;
+}
+
+#listaMaterias li:hover,
+#listaNotas li:hover {
+    border-color: #3b5278;
+}
+
+#listaMaterias input[type="radio"] {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    accent-color: var(--azul);
+    cursor: pointer;
+}
+
+#listaMaterias li label {
+    flex: 1;
+    min-width: 0;
+    cursor: pointer;
+}
+
+#listaMaterias li button,
+#listaNotas li button {
+    flex-shrink: 0;
+    padding: 6px 9px;
+    color: #ff9aa5;
+    background: rgba(255, 120, 135, 0.08);
+    border: 1px solid rgba(255, 120, 135, 0.18);
+    border-radius: 7px;
+    font-size: 11px;
+}
+
+#listaMaterias li button:hover,
+#listaNotas li button:hover {
+    background: rgba(255, 120, 135, 0.16);
+}
+
+#estadoMaterias,
+#estadoNotas {
+    margin-top: 12px;
+    color: #7f90ad;
+    font-size: 12px;
+}
+
+.acoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.acoes button {
+    padding: 10px 14px;
+    color: #c5d2eb;
+    background: #17243a;
+    border: 1px solid #2d3e5b;
+    border-radius: 9px;
+    font-size: 12px;
+    font-weight: 600;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.acoes button:hover {
+    background: #223453;
+    border-color: #4867a5;
+}
+
+#botaoNotas {
+    margin-left: auto;
+    color: #ffffff;
+    background: #3155b7;
+    border-color: #4268d0;
+}
+
+#botaoNotas:hover {
+    background: #4168d5;
+}
+
+/* ===== ÁREA DE NOTAS ===== */
+
+#resumoNotas {
+    margin-bottom: 17px;
+    padding: 13px 15px;
+    color: #c9d7f3;
+    background: rgba(108, 140, 255, 0.07);
+    border: 1px solid rgba(108, 140, 255, 0.16);
+    border-radius: 10px;
+    font-size: 12px;
+}
+
+.form-nota {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(120px, 0.8fr) auto;
+}
+
+#listaNotas strong {
+    color: var(--verde);
+}
+
+#mensagem {
+    min-height: 24px;
+    margin: 0 2px 12px;
+    color: var(--verde);
+    font-size: 12px;
+}
+
+#mensagem.erro {
+    color: var(--vermelho);
+}
+
+/* ===== RODAPÉ ===== */
+
+footer {
+    padding: 14px 0 5px;
+    color: #7484a1;
+    border-top: 1px solid #202d43;
+    text-align: center;
+    font-size: 11px;
+}
+
+/* ===== RESPONSIVIDADE ===== */
+
+@media (min-width: 1500px) {
+    .conteudo {
+        padding-right: 55px;
+        padding-left: 55px;
+    }
+}
+
+@media (max-width: 1050px) {
+    .sidebar {
+        width: 215px;
+        min-width: 215px;
+        padding-right: 14px;
+        padding-left: 14px;
+    }
+
+    .conteudo {
+        padding: 28px 25px;
+    }
+
+    .boas-vindas {
+        padding: 26px;
+    }
+
+    .ilustracao {
+        width: 175px;
+        height: 145px;
+    }
+
+    .form-nota {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    #botaoSalvarNota {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 760px) {
+    .app-layout {
+        display: block;
+    }
+
+    .sidebar {
+        width: 100%;
+        min-width: 0;
+        height: auto;
+        position: relative;
+        padding: 15px 16px;
+        border-right: none;
+        border-bottom: 1px solid var(--borda);
+    }
+
+    .logo {
+        margin: 0 0 15px 3px;
+        font-size: 24px;
+    }
+
+    .menu-label {
+        margin-left: 4px;
+    }
+
+    .menu {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    .menu-item {
+        width: auto;
+        flex: 1 1 auto;
+        justify-content: center;
+        padding: 10px;
+        font-size: 11px;
+    }
+
+    .sidebar-bottom {
+        display: none;
+    }
+
+    .conteudo {
+        width: 100%;
+        padding: 24px 18px;
+    }
+
+    .topbar {
+        margin-bottom: 22px;
+    }
+
+    .boas-vindas {
+        min-height: 190px;
+        padding: 23px;
+    }
+
+    .ilustracao {
+        width: 130px;
+        height: 125px;
+    }
+
+    .resumo {
+        gap: 12px;
+        margin: 18px 0;
+    }
+
+    .resumo-card {
+        padding: 16px;
+    }
+
+    .painel {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 500px) {
+    .conteudo {
+        padding: 20px 13px;
+    }
+
+    .topbar h1 {
+        font-size: 22px;
+    }
+
+    .subtitulo {
+        font-size: 9px;
+        letter-spacing: 1.3px;
+    }
+
+    .boas-vindas {
+        min-height: 0;
+        padding: 23px 20px;
+    }
+
+    .boas-vindas h2 {
+        font-size: 24px;
+    }
+
+    .boas-vindas p:last-child {
+        font-size: 12px;
+    }
+
+    .ilustracao {
+        width: 90px;
+        height: 110px;
+        border-width: 3px;
+        border-radius: 13px;
+    }
+
+    .resumo {
+        grid-template-columns: 1fr;
+    }
+
+    .resumo-card {
+        display: grid;
+        grid-template-columns: 43px 1fr;
+        column-gap: 13px;
+        align-items: center;
+        padding: 16px;
+    }
+
+    .resumo-card .icone {
+        grid-column: 1;
+        grid-row: 1 / span 3;
+        margin: 0;
+    }
+
+    .resumo-card p,
+    .resumo-card h3,
+    .resumo-card span,
+    .resumo-card strong {
+        grid-column: 2;
+    }
+
+    .resumo-card strong {
+        margin-top: 7px;
+    }
+
+    .painel {
+        padding: 17px;
+    }
+
+    .titulo-secao h2 {
+        font-size: 17px;
+    }
+
+    .adicionar {
+        flex-direction: column;
+    }
+
+    #botaoAdicionar {
+        width: 100%;
+    }
+
+    .form-nota {
+        grid-template-columns: 1fr;
+    }
+
+    #botaoSalvarNota {
+        grid-column: auto;
+    }
+
+    .acoes {
+        flex-direction: column;
+    }
+
+    .acoes button,
+    #botaoNotas {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    #listaMaterias li,
+    #listaNotas li {
+        padding: 11px;
+        gap: 8px;
+    }
+}
+/* Cores das notas do StudyFlow;-; */
+
+#listaNotas .nota-vermelha {
+    color: #ff7185;
+}
+
+#listaNotas .nota-amarela {
+    color: #ffda68;
+}
+
+#listaNotas .nota-verde {
+    color: #57d6a0;
+}
